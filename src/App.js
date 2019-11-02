@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   App:{
     flex:1,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
   },
   Title:{
     fontSize:50,
