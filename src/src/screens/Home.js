@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {View,Text,StatusBar,Button} from 'react-native';
 import {Container} from '../components/Container';
 import {InputWithText} from '../components/TextInput';
-
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
+import WeatherForecast from '../components/WeatherForecast/WeatherForecast';
 const CITY_TEXT =  'City';
 
 class Home extends Component {
@@ -34,6 +35,8 @@ class Home extends Component {
                 buttonText = {CITY_TEXT}
                 onChangeText = {this.getWeather}
                 />
+                <CurrentWeather/>
+                <WeatherForecast/>
             </Container>
         );
     }

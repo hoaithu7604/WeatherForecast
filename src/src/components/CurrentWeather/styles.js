@@ -2,9 +2,10 @@ import {StyleSheet} from 'react-native';
 import GLOBALS from '../../Globals';
 export default StyleSheet.create({
     container:{
-        flex:1,
-        flexDirection: 'column',
+        flex:3,
+        width:'100%',
         alignItems: 'center',
-        backgroundColor: GLOBALS.PRIMARY_COLOR,
+        backgroundColor: '#fff',
+        margin:5,
     },
 })

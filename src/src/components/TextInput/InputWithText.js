@@ -51,11 +51,14 @@ class InputWithText extends Component{
           data={cities.length === 1 && comp(query, cities[0].name) ? cities : cities}
           defaultValue={query}
           onChangeText={text => this.setState({ query: text })}
-          placeholder="Enter Star Wars film title"
-          renderItem={(city) => (
-            <TouchableOpacity onPress={() => this.setState({ query: city.name })}>
+          placeholder="Enter city"
+          renderItem={({item, i}) => (
+            <TouchableOpacity onPress={() => {
+              this.setState({ query: item.name });
+              console.log(item.name);
+            }}>
               <Text style={styles1.itemText}>
-                {city.name} {city.id}
+                {item.name}
               </Text>
             </TouchableOpacity>
           )}
