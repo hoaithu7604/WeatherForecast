@@ -7,4 +7,5 @@ App dự báo thời tiết bằng React Native
 Giảng viên viên hướng dẫn: Phan Nguyệt Minh
 
 Thành viên: +Nguyễn Tuấn Phương Năm - 15520519
+
             +Nguyễn Hoài Thu - 16521200
