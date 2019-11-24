@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {Text, TextInput, Keyboard, TouchableOpacity} from 'react-native';
 import * as cityList from '../../assets/vn.city.list.json';
 import Autocomplete from 'react-native-autocomplete-input';
-
 import styles from './styles';
+import Globals from '../../Globals.js';
 //convert tieng viet co dau thanh khong dau
-function change_alias(alias) {
+const change_alias = alias => {
   var str = alias;
   str = str.toLowerCase();
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
@@ -28,12 +22,13 @@ function change_alias(alias) {
   str = str.replace(/ + /g, ' ');
   str = str.trim();
   return str;
-}
+};
 class InputWithText extends Component {
   constructor(props) {
     super(props);
     this.state = {
       query: '',
+      hideResults: false,
     };
   }
 
@@ -46,27 +41,47 @@ class InputWithText extends Component {
       city => change_alias(city.name).search(regex) >= 0,
     );
   }
+  renderTextInput = props => {
+    return (
+      <TextInput
+        {...props}
+        ref={input => {
+          this.textInput = input;
+        }}
+        style={styles.inputStyle}></TextInput>
+    );
+  };
   render() {
-    const {query} = this.state;
+    const {query, hideResults} = this.state;
     const cities = this.findCity(query);
     const {onChangeText} = this.props;
     const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-
     return (
       <Autocomplete
         autoCapitalize="none"
         autoCorrect={false}
         containerStyle={styles.containerStyle}
-        listContainerStyle={styles.listContainer}
+        inputContainerStyle={styles.inputContainerStyle}
+        listContainerStyle={styles.listContainerStyle}
+        listStyle={styles.listStyle}
+        hideResults={hideResults}
         data={
           cities.length === 1 && comp(query, cities[0].name) ? cities : cities
         }
         defaultValue={query}
-        onChangeText={text => this.setState({query: text})}
+        onChangeText={text => {
+          this.setState({hideResults: false});
+          this.setState({query: text});
+        }}
+        renderTextInput={this.renderTextInput}
         placeholder="Enter city"
         renderItem={({item, i}) => (
           <TouchableOpacity
             onPress={() => {
+              Keyboard.dismiss();
+              this.setState({
+                hideResults: true,
+              });
               this.setState({query: item.name});
               onChangeText(item.name);
             }}>

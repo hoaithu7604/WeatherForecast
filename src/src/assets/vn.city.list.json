@@ -55,15 +55,6 @@
       }
     },
     {
-      "id": 1577995,
-      "name": "Lagi",
-      "country": "VN",
-      "coord": {
-        "lon": 107.783333,
-        "lat": 10.66667
-      }
-    },
-    {
       "id": 1559977,
       "name": "Tỉnh Vĩnh Long",
       "country": "VN",
@@ -97,15 +88,6 @@
       "coord": {
         "lon": 108.334999,
         "lat": 15.87944
-      }
-    },
-    {
-      "id": 1562822,
-      "name": "Socialist Republic of Vietnam",
-      "country": "VN",
-      "coord": {
-        "lon": 107.833328,
-        "lat": 16.16667
       }
     },
     {

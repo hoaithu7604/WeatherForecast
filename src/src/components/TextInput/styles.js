@@ -5,18 +5,37 @@ const BORDER_RADIUS = 15;
 
 export default StyleSheet.create({
   containerStyle: {
-    flex: 1,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
+    width: '90%',
     zIndex: 1,
+    position: 'absolute',
+    //backgroundColor: '#000',
+  },
+  inputStyle: {
+    borderRadius: 15,
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 40,
+    fontSize: 15,
+    paddingHorizontal: 20,
   },
   inputContainerStyle: {
-    borderRadius: 5,
+    marginVertical: 5,
+    borderColor: 'rgba(0, 0, 0, 0)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    //backgroundColor: '#ff0000',
   },
   itemText: {
     margin: 2,
     fontSize: 15,
+  },
+  listContainerStyle: {
+    maxHeight: 200,
+    overflow: 'scroll',
+  },
+  listStyle: {
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
 });
