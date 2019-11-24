@@ -1,126 +1,80 @@
-import React,{Component} from 'react';
-import {View,Text, TextInput,StyleSheet,TouchableOpacity} from 'react-native';
+import React, {Component} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import * as cityList from '../../assets/vn.city.list.json';
 import Autocomplete from 'react-native-autocomplete-input';
 
 import styles from './styles';
-
-class InputWithText extends Component{
-    static renderCity(city) {
-        const { name} = city;
-    
-        return (
-          <View>
-            <Text style={styles.titleText}>{name}</Text>
-          </View>
-        );
-      }
-    constructor(props)
-    {
-        super(props);
-        this.state = {
-            query: '' 
-        }
-    }
-    getCity(text)
-    {
-        console.log('finding');
-        console.log(this.findCity('Vinh')[0].name);
-    };
-    findCity(query){
-        if (query===''){
-            return [];
-        }
-        const regex = new RegExp(`${query.trim()}`, 'i');
-        return cityList.cityList.filter(city=>city.name.search(regex)>=0);
-    }
-    render(){
-        const { query } = this.state;
-        const cities = this.findCity(query);
-        const {buttonText,onChangeText} = this.props;
-        const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
-
-        return (
-            <View style = {styles.container}>
-                <Text style={styles.buttonText}>{buttonText}</Text>
-                <View style = {styles.border}/>
-                <Autocomplete
-          autoCapitalize="none"
-          autoCorrect={false}
-          containerStyle={styles1.autocompleteContainer}
-          data={cities.length === 1 && comp(query, cities[0].name) ? cities : cities}
-          defaultValue={query}
-          onChangeText={text => this.setState({ query: text })}
-          placeholder="Enter city"
-          renderItem={({item, i}) => (
-            <TouchableOpacity onPress={() => {
-              this.setState({ query: item.name });
-              console.log(item.name);
-            }}>
-              <Text style={styles1.itemText}>
-                {item.name}
-              </Text>
-            </TouchableOpacity>
-          )}
-        />
-        <View style={styles.descriptionContainer}>
-          {cities.length > 0 ? (
-            InputWithText.renderCity(cities[0])
-          ) : (
-            <Text style={styles.infoText}>
-              Enter Title of a Star Wars movie
-            </Text>
-          )}
-        </View>
-
-            </View>
-            ) 
-    }
+//convert tieng viet co dau thanh khong dau
+function change_alias(alias) {
+  var str = alias;
+  str = str.toLowerCase();
+  str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+  str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+  str = str.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+  str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+  str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+  str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+  str = str.replace(/đ|Ð|ð/g, 'd');
+  str = str.replace(
+    /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
+    ' ',
+  );
+  str = str.replace(/ + /g, ' ');
+  str = str.trim();
+  return str;
 }
+class InputWithText extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+    };
+  }
 
-const styles1 = StyleSheet.create({
-    container: {
-      backgroundColor: '#F5FCFF',
-      flex: 1,
-      paddingTop: 25
-    },
-    autocompleteContainer: {
-      flex: 1,
-      left: 0,
-      position: 'absolute',
-      right: 0,
-      top: 0,
-      zIndex: 1
-    },
-    itemText: {
-      fontSize: 15,
-      margin: 2,
-      color:'#FF0000',
-    },
-    descriptionContainer: {
-      // `backgroundColor` needs to be set otherwise the
-      // autocomplete input will disappear on text input.
-      backgroundColor: '#F5FCFF',
-      marginTop: 25
-    },
-    infoText: {
-      textAlign: 'center'
-    },
-    titleText: {
-      fontSize: 18,
-      fontWeight: '500',
-      marginBottom: 10,
-      marginTop: 10,
-      textAlign: 'center'
-    },
-    directorText: {
-      color: 'grey',
-      fontSize: 12,
-      marginBottom: 10,
-      textAlign: 'center'
-    },
-    openingText: {
-      textAlign: 'center'
+  findCity(query) {
+    if (query === '') {
+      return [];
     }
-  });
+    const regex = new RegExp(`${change_alias(query).trim()}`, 'i');
+    return cityList.cityList.filter(
+      city => change_alias(city.name).search(regex) >= 0,
+    );
+  }
+  render() {
+    const {query} = this.state;
+    const cities = this.findCity(query);
+    const {onChangeText} = this.props;
+    const comp = (a, b) => a.toLowerCase().trim() === b.toLowerCase().trim();
+
+    return (
+      <Autocomplete
+        autoCapitalize="none"
+        autoCorrect={false}
+        containerStyle={styles.containerStyle}
+        listContainerStyle={styles.listContainer}
+        data={
+          cities.length === 1 && comp(query, cities[0].name) ? cities : cities
+        }
+        defaultValue={query}
+        onChangeText={text => this.setState({query: text})}
+        placeholder="Enter city"
+        renderItem={({item, i}) => (
+          <TouchableOpacity
+            onPress={() => {
+              this.setState({query: item.name});
+              onChangeText(item.name);
+            }}>
+            <Text style={styles.itemText}>{item.name}</Text>
+          </TouchableOpacity>
+        )}
+      />
+    );
+  }
+}
 export default InputWithText;
