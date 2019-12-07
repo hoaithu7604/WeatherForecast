@@ -13,4 +13,8 @@ export default {
     var url = this.FORECAST_API + '&appid=' + this.API_KEY + '&q=' + city;
     return fetch(url).then(response => response.json());
   },
+  iconUrl(icon) {
+    const url = 'http://openweathermap.org/img/wn/' + icon + '.png';
+    return url;
+  },
 };
