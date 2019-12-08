@@ -62,15 +62,15 @@ class Home extends Component {
     });
   };
   render() {
-    const {isLoading, isLoadingForecast} = this.state;
+    const {isLoading, isLoadingForecast, forecastDetail, detail} = this.state;
     return (
       <Container>
         <StatusBar barStyle="light-content" />
         {/* dummy view */}
         <View style={{flex: 1}} />
         <InputWithText onChangeText={this.getWeather} isLoading={isLoading} />
-        <CurrentWeather />
-        <WeatherForecast />
+        <CurrentWeather data={detail} />
+        <WeatherForecast data={forecastDetail} />
         {isLoading || isLoadingForecast ? (
           <ActivityIndicator
             size="large"

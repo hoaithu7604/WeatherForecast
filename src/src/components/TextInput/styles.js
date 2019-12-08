@@ -33,6 +33,7 @@ export default StyleSheet.create({
   listContainerStyle: {
     maxHeight: 200,
     overflow: 'scroll',
+    zIndex: 1,
   },
   listStyle: {
     borderBottomLeftRadius: 10,

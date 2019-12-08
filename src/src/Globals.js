@@ -4,7 +4,44 @@ export default {
   CURRENTWEATHER_API:
     'https://api.openweathermap.org/data/2.5/weather?units=metric',
   FORECAST_API: 'https://api.openweathermap.org/data/2.5/forecast?units=metric',
-
+  DAY: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  MONTH: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+  DAYL: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  MONTHL: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
   getCurrentWeather(city) {
     var url = this.CURRENTWEATHER_API + '&appid=' + this.API_KEY + '&q=' + city;
     return fetch(url).then(response => response.json());
@@ -12,5 +49,9 @@ export default {
   getForecast(city) {
     var url = this.FORECAST_API + '&appid=' + this.API_KEY + '&q=' + city;
     return fetch(url).then(response => response.json());
+  },
+  iconUrl(icon) {
+    const url = 'http://openweathermap.org/img/wn/' + icon + '.png';
+    return url;
   },
 };
