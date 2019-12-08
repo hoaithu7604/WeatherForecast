@@ -19,7 +19,29 @@ export default {
     'Nov',
     'Dec',
   ],
-
+  DAYL: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  MONTHL: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
   getCurrentWeather(city) {
     var url = this.CURRENTWEATHER_API + '&appid=' + this.API_KEY + '&q=' + city;
     return fetch(url).then(response => response.json());

@@ -5,7 +5,6 @@ import Globals from '../../../Globals';
 const ForecastItem = props => {
   const {data, index, handlePress, isSelected} = props;
   const date = new Date(data.dt * 1000);
-  const temp = new Date();
   const imageUrl = Globals.iconUrl(data.weather[0].icon);
   return (
     <TouchableOpacity

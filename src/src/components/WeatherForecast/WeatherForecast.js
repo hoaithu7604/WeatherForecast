@@ -20,29 +20,30 @@ class WeatherForecast extends Component {
   render() {
     const {data} = this.props;
     const {selectedIndex} = this.state;
-    const temp = [];
-    return (
-      <View style={styles.container}>
-        <View style={styles.selectedContainer}>
-          <SelectedForecast />
+    if (data.list)
+      return (
+        <View style={styles.container}>
+          <View style={styles.selectedContainer}>
+            <SelectedForecast data={data.list[selectedIndex]} />
+          </View>
+          <SafeAreaView style={styles.listContainer}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}>
+              {data.list.map((data, index) => (
+                <ForecastItem
+                  data={data}
+                  isSelected={index === selectedIndex}
+                  index={index}
+                  handlePress={this.handlePress}
+                  key={data.dt}
+                />
+              ))}
+            </ScrollView>
+          </SafeAreaView>
         </View>
-        <SafeAreaView style={styles.listContainer}>
-          <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {data.list
-              ? data.list.map((data, index) => (
-                  <ForecastItem
-                    data={data}
-                    isSelected={index === selectedIndex}
-                    index={index}
-                    handlePress={this.handlePress}
-                    key={data.dt}
-                  />
-                ))
-              : null}
-          </ScrollView>
-        </SafeAreaView>
-      </View>
-    );
+      );
+    else return <View style={styles.container} />;
   }
 }
 export default WeatherForecast;

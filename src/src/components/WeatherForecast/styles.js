@@ -10,8 +10,8 @@ export default StyleSheet.create({
   },
   selectedContainer: {
     flex: 2,
-    backgroundColor: '#0000ff',
     width: '100%',
+    padding: 10,
   },
   listContainer: {
     flex: 1,
