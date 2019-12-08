@@ -5,20 +5,17 @@ export default StyleSheet.create({
     flex: 4,
     width: '100%',
     alignItems: 'center',
-    backgroundColor: '#000',
     margin: 5,
     flexDirection: 'column',
   },
   selectedContainer: {
-    flex: 3,
+    flex: 2,
     backgroundColor: '#0000ff',
     width: '100%',
   },
   listContainer: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#ff0000',
     width: '100%',
-    paddingVertical: 5,
   },
 });

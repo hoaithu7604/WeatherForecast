@@ -4,6 +4,21 @@ export default {
   CURRENTWEATHER_API:
     'https://api.openweathermap.org/data/2.5/weather?units=metric',
   FORECAST_API: 'https://api.openweathermap.org/data/2.5/forecast?units=metric',
+  DAY: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  MONTH: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
 
   getCurrentWeather(city) {
     var url = this.CURRENTWEATHER_API + '&appid=' + this.API_KEY + '&q=' + city;
