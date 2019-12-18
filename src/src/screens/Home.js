@@ -17,7 +17,7 @@ const CITY_TEXT = 'City';
 class Home extends Component {
   constructor(props) {
     super(props);
-
+    console.disableYellowBox = true;
     this.state = {
       isLoading: false,
       isLoadingForecast: false,
