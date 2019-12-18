@@ -1,4 +1,4 @@
 import React from 'react';
-import Home from './screens/Home';
+import AppContainer from './screens/AppContainer';
 
-export default ()=> <Home/>;
+export default () => <AppContainer />;

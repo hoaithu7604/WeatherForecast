@@ -1,3 +1,1 @@
-import App from './src/index';
-
-export default App;
+export default <Navigator />;
