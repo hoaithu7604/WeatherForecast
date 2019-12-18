@@ -5,7 +5,6 @@ export default StyleSheet.create({
     flex: 4,
     width: '100%',
     alignItems: 'center',
-    margin: 5,
     flexDirection: 'column',
   },
   selectedContainer: {
